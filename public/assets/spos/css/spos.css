@@ -1,0 +1,351 @@
+body {
+  font-family: 'Robot', 'Verdana', 'Calibri', 'Arial';
+  font-size: 14pt;
+  background-color: #e0e0e0;
+}
+
+
+::selection {
+  color: #ecf0f1;
+  background-color: #34495e;
+}
+
+::-moz-selection {
+  color: #ecf0f1;
+  background-color: #34495e;
+}
+
+/* FlatUIColors */
+.bg-green {
+  background-color: #27ae60;
+}
+
+.bg-green:hover,
+.bg-green:active,
+.bg-green:focus {
+  background-color: #2ecc71;
+}
+
+.bg-blue {
+  background-color: #2980b9;
+}
+
+.bg-blue:hover,
+.bg-blue:active,
+.bg-blue:focus {
+  background-color: #3498db;
+}
+
+.bg-purple {
+  background-color: #8e44ad;
+}
+
+.bg-purple:hover,
+.bg-purple:active,
+.bg-purple:focus {
+  background-color: #9b59b6;
+}
+
+.bg-midnight {
+  background-color: #2c3e50;
+}
+
+.bg-midnight:hover,
+.bg-midnight:active,
+.bg-midnight:focus {
+  background-color: #34495e;
+}
+
+.bg-yellow {
+  background-color: #f39c12;
+}
+
+.bg-yellow:hover,
+.bg-yellow:active,
+.bg-yellow:focus {
+  background-color: #f1c40f;
+}
+
+.bg-orange {
+  background-color: #d35400;
+}
+
+.bg-orange:hover,
+.bg-orange:active,
+.bg-orange:focus {
+  background-color: #e67e22;
+}
+
+.bg-red {
+  background-color: #c0392b;
+}
+
+.bg-red:hover,
+.bg-red:active,
+.bg-red:focus {
+  background-color: #e74c3c;
+}
+
+.bg-white {
+  background-color: #bdc3c7;
+}
+
+.bg-white:hover,
+.bg-white:active,
+.bg-white:focus {
+  background-color: #ecf0f1;
+}
+
+.bg-gray {
+  background-color: #7f8c8d;
+}
+
+.bg-gray:hover,
+.bg-gray:active,
+.bg-gray:focus {
+  background-color: #95a5a6;
+}
+
+.bg-black {
+  background-color: #181616;
+}
+
+.bg-black:hover,
+.bg-black:active,
+.bg-black:focus {
+  background-color: #121111;
+}
+
+.fg-green {
+  color: #27ae60;
+}
+
+.fg-green:hover,
+.fg-green:active,
+.fg-green:focus {
+  color: #2ecc71;
+}
+
+.fg-blue {
+  color: #2980b9;
+}
+
+.fg-blue:hover,
+.fg-blue:active,
+.fg-blue:focus {
+  color: #3498db;
+}
+
+.fg-purple {
+  color: #8e44ad;
+}
+
+.fg-purple:hover,
+.fg-purple:active,
+.fg-purple:focus {
+  color: #9b59b6;
+}
+
+.fg-midnight {
+  color: #2c3e50;
+}
+
+.fg-midnight:hover,
+.fg-midnight:active,
+.fg-midnight:focus {
+  color: #34495e;
+}
+
+.fg-yellow {
+  color: #f39c12;
+}
+
+.fg-yellow:hover,
+.fg-yellow:active,
+.fg-yellow:focus {
+  color: #f1c40f;
+}
+
+.fg-orange {
+  color: #d35400;
+}
+
+.fg-orange:hover,
+.fg-orange:active,
+.fg-orange:focus {
+  color: #e67e22;
+}
+
+.fg-red {
+  color: #c0392b;
+}
+
+.fg-red:hover,
+.fg-red:active,
+.fg-red:focus {
+  color: #e74c3c;
+}
+
+.fg-white {
+  color: #ecf0f1;
+}
+
+.fg-white:hover,
+.fg-white:active,
+.fg-white:focus {
+  color: #ffffff;
+}
+
+.fg-gray {
+  color: #7f8c8d;
+}
+
+.fg-gray:hover,
+.fg-gray:active,
+.fg-gray:focus {
+  color: #95a5a6;
+}
+
+.fg-black {
+  background-color: #181616;
+}
+
+.fg-black:hover,
+.fg-black:active,
+.fg-black:focus {
+  background-color: #121111;
+}
+/* End of FlatUIColors */
+
+/* Helpers */
+.margin-10 {
+  margin: 10px;
+}
+
+.margin-20 {
+  margin: 20px;
+}
+
+.margin-t-10 {
+  margin-top: 10px;
+}
+
+.margin-t-20 {
+  margin-top: 20px;
+}
+
+.margin-b-10 {
+  margin-bottom: 10px;
+}
+
+.margin-b-20 {
+  margin-bottom: 20px;
+}
+
+.margin-tb-10 {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.margin-tb-20 {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.margin-tb-50 {
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
+.margin-tb-70 {
+  margin-bottom: 70px;
+  margin-top: 70px;
+}
+
+.padding-0 {
+  padding: 0;
+}
+
+.padding-5 {
+  padding: 5px;
+}
+
+.padding-10 {
+  padding: 10px;
+}
+
+.padding-20 {
+  padding: 20px;
+}
+
+.padding-t-10 {
+  padding-top: 10px;
+}
+
+.padding-t-20 {
+  padding-top: 20px;
+}
+
+.padding-tb-10 {
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+.padding-tb-20 {
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+.padding-lr-10 {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.pull-center {
+  margin: 0 auto;
+}
+
+.pull-left {
+  float: left !important;
+}
+
+.pull-right {
+  float: right !important;
+}
+
+
+.normalize-link {
+  text-decoration: none;
+}
+
+.font-18 {
+  font-size: 18px;
+}
+
+.font-30 {
+  font-size: 30px;
+}
+
+.container {
+  padding: 5px;
+}
+
+@media (min-width: 550px) {
+  .container {
+    padding: 60px 15px;
+  }
+}
+
+/* End of Helpers */
