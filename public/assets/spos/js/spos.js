@@ -157,5 +157,9 @@ $(document).ready(function() {
     $('#change-description').hide();
   }
 
+  if ($('#change-thumbnail').length > 0){
+    $('#change-thumbnail').hide();
+  }
+
 
 });

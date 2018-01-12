@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'SPOS - Hapus')
+@section('title', 'SPOS - Hapus ' . $item->nama_barang)
 
 @section('content')
 <!-- page content -->

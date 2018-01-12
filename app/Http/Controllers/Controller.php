@@ -12,6 +12,6 @@ class Controller extends BaseController {
     use AuthorizesRequests, AuthorizesResources, DispatchesJobs, ValidatesRequests;
 
     public function rp($number) {
-      return 'Rp' . number_format($number, 2, ',', '.') ;
+      return 'Rp' . number_format($number, 0, ',', '.') ;
     }
 }

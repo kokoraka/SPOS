@@ -59,19 +59,24 @@ class ItemController extends Controller {
             'deskripsi_barang' => $request->get('description'),
             'harga_barang' => $request->get('price'),
             'stok_barang' => $request->get('stock'),
+            'gambar_barang' => $request->get('thumbnail')
          ];
 
          $rules = [
-            'nama_barang' => 'required|min:5',
-            'deskripsi_barang' => 'required|min:15',
-            'harga_barang' => 'required',
-            'stok_barang' => 'required'
+            'name' => 'required|min:5',
+            'description' => 'required|min:15',
+            'price' => 'required',
+            'stock' => 'required',
+            'thumbnail' => 'required|mimes:jpeg,png|image|max:2048'
          ];
 
+         $this->validate($request, $rules);
 
-         if (Validator::make($data, $rules)->fails()) {
-            return redirect('items');
-         }
+         $file = $request->file('thumbnail');
+         $fileName = strtolower(md5(date('YmdHms'))) . '.' . $file->getClientOriginalExtension();
+         $try = $file->move("images/thumbs", $fileName);
+         $data['gambar_barang'] = $fileName;
+         
          Items::find($id)->update($data);
          return redirect('items/view/' . $id);
       }
@@ -84,6 +89,34 @@ class ItemController extends Controller {
          Items::find($id)->delete();
          return redirect('items');
       }
+      return redirect('items');
+   }
+
+   public function store(Request $request) {
+      $data = [
+         'nama_barang' => $request->get('name'),
+         'deskripsi_barang' => $request->get('description'),
+         'harga_barang' => $request->get('price'),
+         'stok_barang' => $request->get('stock'),
+         'gambar_barang' => $request->get('thumbnail'),
+      ];
+
+      $rules = [
+         'name' => 'required|min:5',
+         'description' => 'required|min:15',
+         'price' => 'required',
+         'stock' => 'required',
+         'thumbnail' => 'required|mimes:jpeg,png|image|max:2048'
+      ];
+
+      $this->validate($request, $rules);
+
+      $file = $request->file('thumbnail');
+      $fileName = strtolower(md5(date('YmdHms'))) . '.' . $file->getClientOriginalExtension();
+      $try = $file->move("images/thumbs", $fileName);
+      $data['gambar_barang'] = $fileName;
+
+      Items::insert($data);
       return redirect('items');
    }
 

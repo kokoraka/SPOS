@@ -21,6 +21,7 @@ Route::get('/items/delete/{id}', 'ItemController@confirm');
 
 Route::post('/items/change/{id}', 'ItemController@change');
 Route::post('/items/delete/{id}', 'ItemController@delete');
+Route::post('/items/add', 'ItemController@store');
 
 Route::get('/items/change', function() {
   return redirect('/items');

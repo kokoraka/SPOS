@@ -383,7 +383,7 @@ body .container.body .right_col {
 }
 @media (max-width: 1200px) {
     .x_title  {
-        width: 62%;
+        width: 100%;
         font-size: 17px
     }
     .tile,
