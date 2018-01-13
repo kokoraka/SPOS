@@ -31,6 +31,23 @@ Route::get('/items/delete', function() {
 });
 /* ITEMS */
 
+/* employees */
+Route::get('/employees', 'EmployeeController@index');
+Route::get('/employees/view/{id}', 'EmployeeController@view');
+Route::get('/employees/delete/{id}', 'EmployeeController@confirm');
+
+Route::post('/employees/change/{id}', 'EmployeeController@change');
+Route::post('/employees/delete/{id}', 'EmployeeController@delete');
+Route::post('/employees/add', 'EmployeeController@store');
+
+Route::get('/employees/change', function() {
+  return redirect('/employees');
+});
+Route::get('/employees/delete', function() {
+  return redirect('/employees');
+});
+/* employees */
+
 Route::group(['prefix' => '/api'], function() {
 
 });
