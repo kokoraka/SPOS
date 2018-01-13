@@ -1,6 +1,6 @@
 @extends('layouts.single')
 
-@section('title', 'S-POS - Login')
+@section('title', 'SPOS - Login')
 
 @section('content')
     <div>
@@ -10,7 +10,7 @@
       <section class="login_content">
         <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
           {{ csrf_field() }}
-          <h1>S-POS Login</h1>
+          <h1>SPOS Login</h1>
           <div class="form-group{{ $errors->has('kode_pegawai') ? ' has-error' : '' }}">
             <input id="username" type="text" class="form-control" name="kode_pegawai"  placeholder="Kode Pegawai" value="{{ old('kode_pegawai') }}">
             @if ($errors->has('kode_pegawai'))
@@ -35,7 +35,6 @@
             <div class="clearfix"></div>
             <br />
             <div>
-              <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
               <p>
                 Thank you so much, Gentelella Alela.
               </p>

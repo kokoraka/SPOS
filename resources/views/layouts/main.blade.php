@@ -24,8 +24,7 @@
     <link href="{{url('assets/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{url('assets/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
 
-
-
+    <link href="{{url('assets/select2/css/select2.css')}}" rel="stylesheet">
     <link href="{{url('assets/build/css/custom.css')}}" rel="stylesheet">
   </head>
   <body class="nav-md">
@@ -84,7 +83,7 @@
     <script src="{{url('assets/vendors/pdfmake/build/pdfmake.min.js')}}"></script>
     <script src="{{url('assets/vendors/pdfmake/build/vfs_fonts.js')}}"></script>
 
-
+    <script src="{{url('assets/select2/js/select2.js')}}"></script>
     <script src="{{url('assets/build/js/custom.js')}}"></script>
     <script src="{{url('assets/spos/js/spos.js')}}"></script>
 

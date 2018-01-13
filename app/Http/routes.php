@@ -31,7 +31,7 @@ Route::get('/items/delete', function() {
 });
 /* ITEMS */
 
-/* employees */
+/* Employees */
 Route::get('/employees', 'EmployeeController@index');
 Route::get('/employees/view/{id}', 'EmployeeController@view');
 Route::get('/employees/delete/{id}', 'EmployeeController@confirm');
@@ -46,7 +46,25 @@ Route::get('/employees/change', function() {
 Route::get('/employees/delete', function() {
   return redirect('/employees');
 });
-/* employees */
+/* Employees */
+
+/* Transaction history */
+Route::get('/transaction/history', 'TransactionHistoryController@index');
+Route::get('/transaction/history/view/{id}', 'TransactionHistoryController@view');
+Route::get('/transaction/history/delete/{id}', 'TransactionHistoryController@confirm');
+
+Route::post('/transaction/history/change/{id}', 'TransactionHistoryController@change');
+Route::post('/transaction/history/delete/{id}', 'TransactionHistoryController@delete');
+Route::post('/transaction/history/add', 'TransactionHistoryController@store');
+
+Route::get('/transaction/history/change', function() {
+  return redirect('/transaction/history');
+});
+Route::get('/transaction/history/delete', function() {
+  return redirect('/transaction/history');
+});
+/* Transaction history */
+
 
 Route::group(['prefix' => '/api'], function() {
 
