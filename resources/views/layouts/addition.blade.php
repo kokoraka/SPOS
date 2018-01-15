@@ -38,7 +38,7 @@
              <li><a><i class="fa fa-bar-chart-o"></i> Laporan <span class="fa fa-chevron-down"></span></a>
                <ul class="nav child_menu">
                  <li><a href="{{url('report/items')}}">Laporan Barang</a></li>
-                 <li><a href="{{url('report/income')}}">Laporan Pendapatan</a></li>
+                 <li><a href="{{url('report/incomes')}}">Laporan Pendapatan</a></li>
                </ul>
              </li>
            </ul>

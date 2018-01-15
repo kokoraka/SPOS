@@ -71,13 +71,23 @@ Route::get('/transaction', 'TransactionController@index');
 Route::post('/transaction/add', 'TransactionController@store');
 /* Transaction */
 
+/* Report */
+Route::get('/report/items', 'ReportController@items');
+Route::get('/report/items/view', 'ReportController@viewReportItems');
+
+Route::get('/report/incomes', 'ReportController@incomes');
+Route::get('/report/incomes/view', 'ReportController@viewReportIncomes');
+Route::get('/report', function() {
+  return redirect('/');
+});
+/* Report */
 
 
 Route::group(['prefix' => '/api'], function() {
   Route::post('/add/item/', 'TransactionController@addItem');
   Route::post('/remove/item', 'TransactionController@removeItem');
   Route::get('/get/orders', 'TransactionController@getOrders');
-  Route::post('/remove/orders', 'TransactionController@removeOrders');  
+  Route::post('/remove/orders', 'TransactionController@removeOrders');
 });
 
 Route::auth();

@@ -87,6 +87,7 @@
     <script src="{{url('assets/select2/js/select2.js')}}"></script>
     <script src="{{url('assets/build/js/custom.js')}}"></script>
     <script src="{{url('assets/spos/js/spos.js')}}"></script>
-
+    @yield('script')
+    
   </body>
 </html>
