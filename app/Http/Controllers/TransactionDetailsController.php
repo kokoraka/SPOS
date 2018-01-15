@@ -25,7 +25,7 @@ class TransactionDetailsController extends Controller {
          ->join('barang', 'transaksi_detil.kode_barang', '=', 'barang.kode_barang')
          ->where('kode_transaksi', $id)
          ->get();
-         
+
       if ($data) {
          return $data;
       }

@@ -1,6 +1,5 @@
 /* DEFINING REPORT */
 var report = new jsPDF('landscape');
-//report.addFont('Roboto', 'Roboto', 'Normal');
 report.setProperties({
     title: 'Laporan SPOS',
     subject: 'Laporan SPOS',
@@ -12,29 +11,45 @@ report.setFont('helvetica', 'normal');
 report.setFontSize(10);
 /* DEFINING REPORT */
 
-function reportItems(type) {
-  if (type) {
-    var margins = {
-      top: 10,
-      bottom: 10,
-      left: 10,
-      width: 170
+function reports(type, method) {
+  if (type && method) {
+    var settings = {
+      name : 'default.pdf',
+      path : document.body,
+      margins : {
+        top: 10,
+        bottom: 10,
+        left: 10,
+        width: 170
+      }
     };
 
+    switch (type) {
+      case 'items':
+        settings.name = 'laporan-data-barang.pdf';
+        settings.path = $("#items-report").contents().find('#content-report').html();
+      break;
+      case 'incomes':
+        settings.name = 'laporan-pendapatan.pdf';
+        settings.path = $("#incomes-report").contents().find('#content-report').html();
+      break;
+      default:
+
+    }
     report.fromHTML(
-      $("#items-report").contents().find('#content-report').html(),
-      margins.left,
-      margins.top, {
-        'width': margins.width,
+      settings.path,
+      settings.margins.left,
+      settings.margins.top, {
+        'width': settings.margins.width,
       }, function(dispose) {
-        switch (type) {
+        switch (method) {
           case 'print':
             report.autoPrint();
           break;
           default:
         }
-        report.save('laporan-data-barang.pdf');
-      }, margins
+        report.save(settings.name);
+      }, settings.margins
     );
 
   }
@@ -42,10 +57,18 @@ function reportItems(type) {
 
 $(document).ready(function() {
   $('#report-items-download').on('click', function() {
-    reportItems('download');
+    reports('items', 'download');
   });
 
   $('#report-items-print').on('click', function() {
-    reportItems('print');
+    reports('items', 'print');
+  });
+
+  $('#report-incomes-download').on('click', function() {
+    reports('incomes', 'download');
+  });
+
+  $('#report-incomes-print').on('click', function() {
+    reports('incomes', 'print');
   });
 });

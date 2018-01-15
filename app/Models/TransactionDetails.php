@@ -13,4 +13,5 @@ class TransactionDetails extends Model {
     protected $hidden = [];
     protected $guarded = [];
 
+
 }

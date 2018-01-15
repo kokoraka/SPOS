@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'SPOS - Laporan Barang')
+@section('title', 'SPOS - Laporan Pendapatan')
 
 @section('content')
 <!-- page content -->
@@ -8,7 +8,7 @@
   <div class="page-title">
 
     <div class="title_left">
-      <h3>Laporan Barang</h3>
+      <h3>Laporan Pendapatan</h3>
     </div>
   </div>
 
@@ -20,7 +20,7 @@
 
       <div class="x_panel">
         <div class="x_title">
-          <h2>Data Barang</h2>
+          <h2>Data Penjualan Barang</h2>
           <ul class="nav navbar-right panel_toolbox">
             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
           </ul>
@@ -28,36 +28,38 @@
 
           <hr />
           <div class="row">
-            <div class="col-md-4 col-sm-4 col-xs-12">
-              <a href="{{url('/report/items/view')}}" type="button" class="btn btn-default btn-md btn-block" target="_blank"><i class="fa fa-search"></i> Lihat </a>
-            </div>
-            <div class="col-md-4 col-sm-4 col-xs-12">
-              <button id="report-items-download" type="button" class="btn btn-default btn-md btn-block"><i class="fa fa-download"></i> Download </button>
-            </div>
-            <div class="col-md-4 col-sm-4 col-xs-12">
-              <button id="report-items-print" type="button" class="btn btn-default btn-md btn-block"><i class="fa fa-print"></i> Cetak </button>
+            <div class="row">
+              <div class="col-md-4 col-sm-4 col-xs-12">
+                <a href="{{url('/report/incomes/view')}}" type="button" class="btn btn-default btn-md btn-block" target="_blank"><i class="fa fa-search"></i> Lihat </a>
+              </div>
+              <div class="col-md-4 col-sm-4 col-xs-12">
+                <button id="report-incomes-download" type="button" class="btn btn-default btn-md btn-block"><i class="fa fa-download"></i> Download </button>
+              </div>
+              <div class="col-md-4 col-sm-4 col-xs-12">
+                <button id="report-incomes-print" type="button" class="btn btn-default btn-md btn-block"><i class="fa fa-print"></i> Cetak </button>
+              </div>
             </div>
           </div>
 
           <div class="x_content">
             <p class="text-muted font-13 m-b-30"></p>
             <div>
-              <table id="datatable-fixed-header" class="table table-striped table-bordered dt-responsive" cellspacing="0" width="100%">
+              <table id="datatable-fixed-header" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                 <thead>
                   <tr>
                     <th>Kode</th>
-                    <th>Nama</th>
-                    <th>Harga</th>
-                    <th>Stok</th>
+                    <th>Waktu</th>
+                    <th>Total Biaya</th>
+                    <th>Pembeli</th>
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($items as $key => $value)
+                  @foreach ($incomes as $key => $value)
                   <tr>
-                    <td>{{$value->kode_barang}}</td>
-                    <td>{{$value->nama_barang}}</td>
-                    <td>{{$me->rp($value->harga_barang)}}</td>
-                    <td>{{$value->stok_barang}}</td>
+                    <td>{{$value->kode_transaksi}}</td>
+                    <td>{{$value->tanggal_transaksi}}</td>
+                    <td>{{$me->rp($value->total_biaya_transaksi)}}</td>
+                    <td>{{$value->nama_pembeli}} ({{$value->nomor_telepon}})</td>
                   </tr>
                   @endforeach
                 </tbody>
@@ -75,7 +77,7 @@
 
   <div class="row">
     <div class="col-md-12" style="display: none;">
-      <iframe id="items-report" src="{{url('report/items/view')}}" width="100%"></iframe>
+      <iframe id="incomes-report" src="{{url('report/incomes/view')}}" width="100%"></iframe>
     </div>
   </div>
 </div>
