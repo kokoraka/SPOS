@@ -37,7 +37,7 @@
                     <div id="change-thumbnail" style="display: none;">
                         <br />
                       <div class="">
-                        <img id="preview-thumbnail" class="img-circle" src="{{url('images/thumbs/'. $thumb)}}" alt="" style="width: 250px; height: 250px;" />
+                        <img id="preview-thumbnail" class="img-circle" src="{{url('images/profiles/'. $thumb)}}" alt="" style="width: 250px; height: 250px;" />
                       </div>
                     </div>
                 </div>

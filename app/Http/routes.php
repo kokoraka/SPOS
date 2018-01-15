@@ -66,8 +66,18 @@ Route::get('/transaction/history/delete', function() {
 /* Transaction history */
 
 
-Route::group(['prefix' => '/api'], function() {
+/* Transaction */
+Route::get('/transaction', 'TransactionController@index');
+Route::post('/transaction/add', 'TransactionController@store');
+/* Transaction */
 
+
+
+Route::group(['prefix' => '/api'], function() {
+  Route::post('/add/item/', 'TransactionController@addItem');
+  Route::post('/remove/item', 'TransactionController@removeItem');
+  Route::get('/get/orders', 'TransactionController@getOrders');
+  Route::post('/remove/orders', 'TransactionController@removeOrders');  
 });
 
 Route::auth();

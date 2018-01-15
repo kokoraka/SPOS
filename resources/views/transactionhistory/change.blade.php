@@ -30,8 +30,10 @@
             <div class="x_content">
                 <div class="col-md-4 col-sm-4 col-xs-12" style="margin: 20px 0;">
                     <div style="font-size: 12pt;">
+                      @if ($transaction->nama_pembeli || $transaction->nomor_telepon)
                         Pembeli: {{$transaction->nama_pembeli}} <small>({{$transaction->nomor_telepon}})</small>
                         <br />
+                      @endif
                         Waktu Transaksi: {{$transaction->tanggal_transaksi}}
                         <br />
                         Total Transaksi: {{$me->rp($transaction->total_biaya_transaksi)}}
@@ -88,7 +90,7 @@
                             </div>
                             <div style="margin: 5px 0;">
                                 <div class="col-md-6 col-sm-6 col-xs-8" style="padding:0; margin: 0;">
-                                    <input id="quantity-{{$key}}" name="quantity[]" min="0" step="1" class="form-control" type="number" placeholder="Jumlah barang" value="{{$value->jumlah_transaksi_detil}}" onchange="$('#prices-{{$key}}').val($('#quantity-{{$key}}').val() * {{$value->harga_barang}});" />
+                                    <input id="quantity-{{$key}}" name="quantity[]" min="0" step="1" class="form-control" type="number" placeholder="Jumlah barang" value="{{$value->jumlah_transaksi_detil}}" onchange="$('#prices-{{$key}}').val('Rp' + $('#quantity-{{$key}}').val() * {{$value->harga_barang}});" />
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-4" style="padding:0; margin: 0;">
                                     <input id="prices-{{$key}}" name="prices[]" class="form-control" type="text" placeholder="Total Harga barang" value="{{$me->rp($value->harga_barang * $value->jumlah_transaksi_detil)}}" readonly />
