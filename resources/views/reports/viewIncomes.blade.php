@@ -17,20 +17,17 @@
           <table border="1" style="width: 100%; font-size: 10pt;" cellspacing="0" cellpadding="0">
             <thead>
               <tr>
-                <th>Kode</th>
-                <th>Waktu</th>
-                <th>Total Biaya</th>
-                <th>Pembeli</th>
+                <th>Tanggal Transaksi</th>
+                <th>Total Pendapatan</th>
+                <th>Jumlah Barang Terjual</th>
               </tr>
             </thead>
             <tbody>
-
-              @foreach ($incomes['trx'] as $key => $value)
+              @foreach ($incomes as $key => $value)
               <tr>
-                <td>{{$value->kode_transaksi}}</td>
                 <td>{{$value->tanggal_transaksi}}</td>
                 <td>{{$me->rp($value->total_biaya_transaksi)}}</td>
-                <td>{{$value->nama_pembeli}} ({{$value->nomor_telepon}})</td>
+                <td>{{$value->jumlah_barang_transaksi}}</td>
               </tr>
               @endforeach
             </tbody>

@@ -4,6 +4,12 @@ if ($('meta[name="_totals_"]').length > 0) {
   var _TOTALS = $('meta[name="_totals_"]').attr('content');
 }
 
+var dateRangeSettings = {
+  locale: {
+    "format": "YYYY-MM-DD",
+  },
+};
+
 function reload_orders() {
   var data = {
     '_token': $('[name="_token"]').val()
@@ -41,7 +47,7 @@ function reload_orders() {
         $('#item-cash').val(data.max);
         $('meta[name="_totals_"]').attr('content', data.max);
         $('#item-cash').attr('min', data.max);
-        
+
         var cash_back = $('#item-cash').val() - data.max;
         if (cash_back < 0) {
           cash_back = data.max;
@@ -114,6 +120,13 @@ $(document).ready(function() {
 
   if ($('.select2').length > 0){
     $('.select2').select2();
+  }
+
+  if ($('#datepicker-start, #datepicker-end').length > 0){
+    $('#datepicker-start, #datepicker-end').daterangepicker({
+      'locale': dateRangeSettings.locale,
+      singleDatePicker: true,
+    });
   }
 
   if ($('#current-time').length > 0){

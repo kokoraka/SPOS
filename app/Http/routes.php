@@ -77,6 +77,7 @@ Route::get('/report/items/view', 'ReportController@viewReportItems');
 
 Route::get('/report/incomes', 'ReportController@incomes');
 Route::get('/report/incomes/view', 'ReportController@viewReportIncomes');
+Route::get('/report/incomes/view/{start}/{finish}', 'ReportController@viewReportIncomesCustom');
 Route::get('/report', function() {
   return redirect('/');
 });

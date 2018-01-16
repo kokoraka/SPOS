@@ -34,7 +34,7 @@ class ReportController extends Controller {
 
    public function incomes() {
      $data = [
-         'incomes' => Transaction::all(),
+         'incomes' => Transaction::getSummary(),
          'me' => $this
      ];
      return view('reports.incomes', $data);
@@ -42,7 +42,15 @@ class ReportController extends Controller {
 
    public function viewReportIncomes() {
      $data = [
-         'incomes' => Transaction::getDetails(),
+         'incomes' => Transaction::getSummary(FALSE),
+         'me' => $this
+     ];
+     return view('reports.viewIncomes', $data);
+   }
+
+   public function viewReportIncomesCustom($start, $end) {
+     $data = [
+         'incomes' => Transaction::getSummary(['start' => $start, 'end' => $end]),
          'me' => $this
      ];
      return view('reports.viewIncomes', $data);
