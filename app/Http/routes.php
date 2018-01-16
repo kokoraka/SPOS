@@ -14,6 +14,11 @@
 
 Route::get('/', 'HomeController@index');
 
+/* PROFILE */
+Route::get('/profile', 'ProfileController@index');
+Route::post('/profile/save', 'ProfileController@save');
+/* PROFILE */
+
 /* ITEMS */
 Route::get('/items', 'ItemController@index');
 Route::get('/items/view/{id}', 'ItemController@view');

@@ -23,12 +23,18 @@
 
        <!-- sidebar menu -->
        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+          <div class="menu_section">
+            <h3>Pengaturan</h3>
+            <ul class="nav side-menu">
+              <li><a href="{{url('profile')}}"><i class="fa fa-user"></i> Profil</a></li>
+            </ul>
+          </div>
          <div class="menu_section">
            <h3>Menu Utama</h3>
            <ul class="nav side-menu">
              <li><a href="{{url('')}}"><i class="fa fa-home"></i> Beranda</a></li>
              <li><a href="{{url('items')}}"><i class="fa fa-edit"></i> Barang</a></li>
-             <li><a href="{{url('employees')}}"><i class="fa fa-desktop"></i> Pegawai</a></li>
+             <li><a href="{{url('employees')}}"><i class="fa fa-users"></i> Pegawai</a></li>
              <li><a><i class="fa fa-table"></i> Transaksi <span class="fa fa-chevron-down"></span></a>
                <ul class="nav child_menu">
                  <li><a href="{{url('transaction')}}">Penjualan Barang</a></li>
