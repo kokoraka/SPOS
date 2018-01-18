@@ -12,7 +12,7 @@
     <link href="{{url('assets/vendors/nprogress/nprogress.css')}}" rel="stylesheet">
     <link href="{{url('assets/vendors/animate.css/animate.min.css')}}" rel="stylesheet">
     <link href="{{url('assets/build/css/custom.css')}}" rel="stylesheet">
-    <link href="{{url('favicon.png')}}" rel="icon" type="image/x-icon">
+    <link href="{{url('images/favicon.png')}}" rel="icon" type="image/x-icon">
   </head>
   <body class="login">
 
