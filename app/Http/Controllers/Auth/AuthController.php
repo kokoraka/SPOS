@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Auth;
 use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
-class AuthController extends Controller
-{
+class AuthController extends Controller {
     /*
     |--------------------------------------------------------------------------
     | Registration & Login Controller
@@ -29,41 +29,41 @@ class AuthController extends Controller
      * @var string
      */
      protected $username = 'kode_pegawai';
-     protected $redirectTo = '/dashboard';
+     protected $redirectTo = '/';
+     protected $redirectAfterLogout = '/login';
+     protected $guard = 'employee';
 
     /**
      * Create a new authentication controller instance.
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
+    protected function validator(array $data) {
         return Validator::make($data, [
-            'username' => 'required|min:6|max:15|unique:users',
+            'kode_pegawai' => 'required|min:6|max:15|unique:pegawai',
             'password' => 'required|min:6|confirmed',
         ]);
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return User
-     */
-     /*
-    protected function create(array $data)
-    {
+    public function authenticate() {
+      if (Auth::guard('employee')->attempt(['kode_pegawai' => $email, 'password' => $password])) {
+        return redirect()->intended('/');
+      }
+    }
+
+
+  public function logout(Request $request) {
+    Auth::guard('employee')->logout();
+    $request->session()->forget('employee');
+    return redirect('/login');
+  }
+
+    /*
+    protected function create(array $data) {
         return User::create([
             'username' => $data['username'],
             'password' => bcrypt($data['password']),

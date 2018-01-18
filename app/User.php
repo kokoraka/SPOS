@@ -13,10 +13,12 @@ class User extends Authenticatable {
      public $remember = false;
 
     protected $fillable = [
-        'username', 'password',
+        'kode_pegawai', 'password',
     ];
 
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    protected $hidden = [];
+
+    public function getAuthPassword() {
+      return $this->kata_sandi_pegawai;
+    }
 }

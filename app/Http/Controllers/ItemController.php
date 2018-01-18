@@ -76,7 +76,7 @@ class ItemController extends Controller {
          $fileName = strtolower(md5(date('YmdHms'))) . '.' . $file->getClientOriginalExtension();
          $try = $file->move("images/thumbs", $fileName);
          $data['gambar_barang'] = $fileName;
-         
+
          Items::find($id)->update($data);
          return redirect('items/view/' . $id);
       }
