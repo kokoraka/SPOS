@@ -7,11 +7,12 @@ SPOS build with Laravel, designed to be writeable and maintenanceable.
 https://www.gurisa.com
 
 ## Credential Login
--conan::root
--haibara::supervisor
--mitsuhiko::cashier
--genta::keeper
--toor::root
+
+* conan::root
+* haibara::supervisor
+* mitsuhiko::cashier
+* genta::keeper
+* toor::root
 
 ###Passwords: 123456
 
