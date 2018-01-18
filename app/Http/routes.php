@@ -94,6 +94,8 @@ Route::group(['prefix' => '/api'], function() {
   Route::post('/remove/item', 'TransactionController@removeItem');
   Route::get('/get/orders', 'TransactionController@getOrders');
   Route::post('/remove/orders', 'TransactionController@removeOrders');
+
+  Route::get('/chart/transactions/', 'TransactionController@last10');
 });
 
 Route::auth();

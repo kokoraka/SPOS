@@ -177,5 +177,8 @@ class TransactionController extends Controller {
       return redirect('transaction')->withErrors($messages)->withInput();
    }
 
+  public function last10() {
+    return response()->json(['content' => Transaction::getSummary(FALSE, ['skip' => 0, 'take' => 10])]);
+  }
 
 }

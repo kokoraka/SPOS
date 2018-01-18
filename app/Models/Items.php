@@ -12,18 +12,26 @@ class Items extends Model {
 
     protected $hidden = [];
     protected $guarded = [];
-    /*
-    public static function get_recents() {
-      $data = DB::table('status')
-       ->selectRaw('status.*, authors.name, authors.slug AS author_slug')
-       ->orderBy('status.updated_at', 'DSC')
-       ->join('authors', 'authors.id', '=', 'status.author_id')
-       ->skip(0)->take(7)->get();
-       return $data;
+
+    public static function getStockItems($amount) {
+      $data = Items::orderBy('stok_barang', 'DSC')
+        ->select(
+          '*', DB::raw('FORMAT(((SELECT stok_barang / (SELECT SUM(stok_barang) FROM barang)) * 100), 2) AS persentasi_barang')
+          )
+        ->skip(0)->take($amount)->get();
+      return $data;
     }
 
-    public static function get_categories() {
-      return DB::table('categories')->orderBy('name', 'ASC')->get();
+    public static function getPopularItems($amount) {
+      $data = DB::table('barang')
+        ->select(
+            DB::raw('barang.*, SUM(jumlah_transaksi_detil) AS total_terjual'),
+            DB::raw('FORMAT(((SELECT stok_barang / (SELECT SUM(stok_barang) FROM barang)) * 100), 2) AS persentasi_barang')
+            )
+        ->join('transaksi_detil', 'barang.kode_barang', '=', 'transaksi_detil.kode_barang')
+        ->groupBy('kode_barang')
+        ->orderBy('total_terjual', 'DESC')
+        ->get();
+       return $data;
     }
-    */
 }

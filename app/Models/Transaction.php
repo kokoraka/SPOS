@@ -29,7 +29,7 @@ class Transaction extends Model {
       return abort(404);
    }
 
-   public static function getSummary($date = FALSE) {
+   public static function getSummary($date = FALSE, $limit = FALSE) {
       $qry = DB::table('transaksi')
          ->select(
                DB::raw('DATE(tanggal_transaksi) AS tanggal_transaksi, SUM(jumlah_transaksi_detil) AS jumlah_barang_transaksi, SUM(jumlah_transaksi_detil * harga_barang) AS total_biaya_transaksi')
@@ -42,7 +42,9 @@ class Transaction extends Model {
          $qry->whereRaw("DATE(tanggal_transaksi) >= '" . $date['start'] . "'");
          $qry->whereRaw("DATE(tanggal_transaksi) <= '" . $date['end'] . "'");
       }
-
+      if ($limit) {
+        $qry->skip($limit['skip'])->take($limit['take']);
+      }
       $data = $qry->get();
 
       if ($data) {

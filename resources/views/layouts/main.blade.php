@@ -42,7 +42,6 @@
     <script src="{{url('assets/vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
     <script src="{{url('assets/vendors/fastclick/lib/fastclick.js')}}"></script>
     <script src="{{url('assets/vendors/nprogress/nprogress.js')}}"></script>
-    <script src="{{url('assets/vendors/Chart.js/dist/Chart.min.js')}}"></script>
     <script src="{{url('assets/vendors/gauge.js/dist/gauge.min.js')}}"></script>
     <script src="{{url('assets/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js')}}"></script>
     <script src="{{url('assets/vendors/iCheck/icheck.min.js')}}"></script>
@@ -59,6 +58,8 @@
     <script src="{{url('assets/vendors/flot.curvedlines/curvedLines.js')}}"></script>
 
     <script src="{{url('assets/vendors/DateJS/build/date.js')}}"></script>
+
+    <script src="{{url('assets/vendors/Chart.js/dist/Chart.js')}}"></script>
 
     <script src="{{url('assets/vendors/jqvmap/dist/jquery.vmap.js')}}"></script>
     <script src="{{url('assets/vendors/jqvmap/dist/maps/jquery.vmap.world.js')}}"></script>
@@ -85,9 +86,11 @@
     <script src="{{url('assets/vendors/pdfmake/build/vfs_fonts.js')}}"></script>
 
     <script src="{{url('assets/select2/js/select2.js')}}"></script>
-    <script src="{{url('assets/build/js/custom.js')}}"></script>
+
     <script src="{{url('assets/spos/js/spos.js')}}"></script>
+    <script src="{{url('assets/build/js/custom.js')}}"></script>
+
     @yield('script')
-    
+
   </body>
 </html>

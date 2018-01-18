@@ -23,12 +23,6 @@
 
        <!-- sidebar menu -->
        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-          <div class="menu_section">
-            <h3>Pengaturan</h3>
-            <ul class="nav side-menu">
-              <li><a href="{{url('profile')}}"><i class="fa fa-user"></i> Profil</a></li>
-            </ul>
-          </div>
          <div class="menu_section">
            <h3>Menu Utama</h3>
            <ul class="nav side-menu">
@@ -47,6 +41,12 @@
                  <li><a href="{{url('report/incomes')}}">Laporan Pendapatan</a></li>
                </ul>
              </li>
+           </ul>
+         </div>
+         <div class="menu_section">
+           <h3>Pengaturan</h3>
+           <ul class="nav side-menu">
+             <li><a href="{{url('profile')}}"><i class="fa fa-user"></i> Profil</a></li>
            </ul>
          </div>
        </div>

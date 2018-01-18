@@ -10,6 +10,10 @@ var dateRangeSettings = {
   },
 };
 
+function getDate(year, month, day) {
+  return new Date(year, month - 1, day).getTime();
+}
+
 function reload_orders() {
   var data = {
     '_token': $('[name="_token"]').val()
@@ -200,5 +204,90 @@ $(document).ready(function() {
       $('#return-transaction').html('Rp' + cash_back);
     });
   }
+
+  /* CHART */
+  var chart_settings = {
+    series: {
+      lines: {
+        show: false,
+        fill: true
+      },
+      splines: {
+        show: true,
+        tension: 0.4,
+        lineWidth: 1,
+        fill: 0.4
+      },
+      points: {
+        radius: 1,
+        show: true
+      },
+      shadowSize: 2
+    },
+    grid: {
+      verticalLines: true,
+      hoverable: true,
+      clickable: true,
+      tickColor: "#d5d5d5",
+      borderWidth: 1,
+      color: '#fff'
+    },
+    colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
+    xaxis: {
+      tickColor: "rgba(51, 51, 51, 0.06)",
+      mode: "time",
+      tickSize: [1, "day"],
+      //tickLength: 10,
+      //axisLabel: "Date",
+      axisLabelUseCanvas: true,
+      axisLabelFontSizePixels: 12,
+      axisLabelFontFamily: 'Verdana, Arial',
+      axisLabelPadding: 10
+    },
+    yaxis: {
+      ticks: 8,
+      tickColor: "rgba(51, 51, 51, 0.06)",
+    },
+    tooltip: false
+  }
+
+  if ($("#transaction-chart").length > 0) {
+    $.ajax({
+      url: 'api/chart/transactions',
+      type: "GET",
+      data: {'_token': $('[name="_token"]').val()},
+        success: function(data){
+          var chart_data = [];
+          var chart_label = [];
+
+          for (i = 0; i < data.content.length; i++) {
+            chart_label[i] = data.content[i].tanggal_transaksi;
+            chart_data[i] = parseInt(data.content[i].total_biaya_transaksi);
+          }
+          var report_settings = {
+            type: 'bar',
+            data: {
+              datasets: [{
+                label: 'Transaksi 10 Hari Terakhir',
+                data: chart_data,
+                backgroundColor: "rgba(38, 185, 154, 0.31)",
+                borderColor: "rgba(38, 185, 154, 0.7)",
+                pointBorderColor: "rgba(38, 185, 154, 0.7)",
+                pointBackgroundColor: "rgba(38, 185, 154, 0.7)",
+                pointHoverBackgroundColor: "#fff",
+                pointHoverBorderColor: "rgba(220,220,220,1)",
+                pointBorderWidth: 1,
+              }],
+              labels: chart_label
+            }
+          };
+          var chart_transaction = new Chart($('#transaction-chart'), report_settings);
+        },
+        error: function(){
+          //uh oh
+        }
+    });
+  }
+  /* CHART */
 
 });

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Employees;
+use App\Models\Transaction;
+use App\Models\Items;
 
 class HomeController extends Controller {
 
@@ -14,60 +17,24 @@ class HomeController extends Controller {
 
 
    public function index() {
-     //$data = [
-         //'data' => $this->get_all_status('normal', 0, 6)
-     //;
-      return view('home');
+     $data = [
+         'board' => $this->getMainBoard(),
+         'stock' => Items::getStockItems(5),
+         'popular' => Items::getPopularItems(5),
+         'me' => $this
+     ];
+     return view('home', $data);
    }
 
-    public function get_all_status($method, $min, $max) {
-      if ($method == 'normal') {
-        $data['max'] = DB::table('status')
-          ->where('visibility', '=', 'PUBLIC')->get();
+   public function getMainBoard() {
+      $data['employees'] = Employees::count();
+      $data['items'] = Items::sum('stok_barang');
+      $data['transactions'] = DB::table('transaksi')
+         ->select(DB::raw('SUM(jumlah_transaksi_detil) AS jumlah_transaksi_detil'))
+         ->join('transaksi_detil', 'transaksi.kode_transaksi', '=', 'transaksi_detil.kode_transaksi')
+         ->first()->jumlah_transaksi_detil;
+      $data['incomes'] = Transaction::sum('total_biaya_transaksi');
 
-        $data['recents']  = Status::get_recents();
-        $data['authors']  = Authors::get_authors();
-        $data['categories']  = Categories::get_categories();
-        $data['tags']  = Tags::get_tags();
-      }
-
-      $data['status'] = DB::table('status')
-       ->selectRaw('status.*, authors.name, authors.slug AS author_slug')
-       ->join('authors', 'authors.id', '=', 'status.author_id')
-       ->skip($min)->take($max)->get();
-
-      foreach ($data['status'] as $key2 => $value2) {
-            $data[$key2]['cats'] = DB::table('categories')
-            ->join('statuscategories', 'categories.id', '=', 'statuscategories.id')
-            ->orderBy('categories.name', 'ASC')
-            ->where('statuscategories.status_id', '=', $value2->id)
-            ->get();
-      }
-      foreach ($data['status'] as $key3 => $value3) {
-            $data[$key3]['tags'] = DB::table('tags')
-            ->join('statustags', 'tags.id', '=', 'statustags.id')
-            ->orderBy('tags.name', 'ASC')
-            ->where('statustags.status_id', '=', $value3->id)
-            ->get();
-      }
-
-       switch ($method) {
-         case 'json':
-           return response()->json($data, 200);
-         break;
-         default:
-           return $data;
-         break;
-       }
-    }
-
-
-    public function page($page) {
-      if (view()->exists($page)) {
-        $data['recents']  = Status::get_recents();
-        return view($page, ['data' => $data]);
-      }
-      return abort(404);
-    }
-
+      return $data;
+   }
 }
