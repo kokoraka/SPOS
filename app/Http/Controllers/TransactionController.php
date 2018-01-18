@@ -10,6 +10,7 @@ use App\Models\Transaction;
 use App\Models\TransactionDetails;
 use Session;
 use Validator;
+use Auth;
 
 class TransactionController extends Controller {
 
@@ -19,14 +20,16 @@ class TransactionController extends Controller {
 
 
    public function index(Request $request) {
-     $data = [
-         'transactions' => Transaction::all(),
-         'items' => Items::all(),
-         'orders' => $this->gets($request),
-         'me' => $this
-     ];
-     //$request->session()->flush();
-     return view('transaction.index', $data);
+      if (Auth::guard('employee')->user()->hasRole(['root', 'cashier'])) {
+         $data = [
+            'transactions' => Transaction::all(),
+            'items' => Items::all(),
+            'orders' => $this->gets($request),
+            'me' => $this
+         ];
+         return view('transaction.index', $data);
+      }
+      return redirect('/');
    }
 
    public function gets(Request $request) {

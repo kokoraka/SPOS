@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
 use App\Models\Items;
 use Validator;
+use Auth;
 
 class ItemController extends Controller {
 
@@ -16,27 +17,36 @@ class ItemController extends Controller {
 
 
    public function index() {
-     $data = [
-         'items' => $this->gets(),
-         'me' => $this
-     ];
-     return view('items.index', $data);
+     if (Auth::guard('employee')->user()->hasRole(['keeper', 'root'])) {
+       $data = [
+           'items' => $this->gets(),
+           'me' => $this
+       ];
+       return view('items.index', $data);
+     }
+     return redirect('/');
    }
 
    public function view($id) {
-     $data = [
-         'item' => $this->get($id),
-         'me' => $this
-     ];
-     return view('items.change', $data);
+      if (Auth::guard('employee')->user()->hasRole(['keeper', 'root'])) {
+        $data = [
+            'item' => $this->get($id),
+            'me' => $this
+        ];
+        return view('items.change', $data);
+      }
+      return redirect('/');
    }
 
    public function confirm($id) {
-     $data = [
+    if (Auth::guard('employee')->user()->hasRole(['keeper', 'root'])) {
+      $data = [
          'item' => $this->get($id),
          'me' => $this
-     ];
-     return view('items.delete', $data);
+      ];
+      return view('items.delete', $data);
+    }
+    return redirect('/');
    }
 
    public function gets() {

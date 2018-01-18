@@ -9,6 +9,7 @@ use App\Models\Items;
 use App\Models\Transaction;
 use App\Models\TransactionDetails;
 use Validator;
+use Auth;
 
 class ReportController extends Controller {
 
@@ -17,43 +18,58 @@ class ReportController extends Controller {
     }
 
    public function items() {
-     $data = [
-         'items' => Items::all(),
-         'me' => $this
-     ];
-     return view('reports.items', $data);
+      if (Auth::guard('employee')->user()->hasRole(['root', 'cashier', 'supervisor'])) {
+         $data = [
+            'items' => Items::all(),
+            'me' => $this
+         ];
+         return view('reports.items', $data);
+      }
+      return redirect('/');
    }
 
    public function viewReportItems() {
-     $data = [
-         'items' => Items::all(),
-         'me' => $this
-     ];
-     return view('reports.viewItems', $data);
+      if (Auth::guard('employee')->user()->hasRole(['root', 'cashier', 'supervisor'])) {
+         $data = [
+            'items' => Items::all(),
+            'me' => $this
+         ];
+         return view('reports.viewItems', $data);
+      }
+      return redirect('/');
    }
 
    public function incomes() {
-     $data = [
-         'incomes' => Transaction::getSummary(),
-         'me' => $this
-     ];
-     return view('reports.incomes', $data);
+      if (Auth::guard('employee')->user()->hasRole(['root', 'supervisor'])) {
+         $data = [
+            'incomes' => Transaction::getSummary(),
+            'me' => $this
+         ];
+         return view('reports.incomes', $data);
+      }
+      return redirect('/');
    }
 
    public function viewReportIncomes() {
-     $data = [
-         'incomes' => Transaction::getSummary(FALSE),
-         'me' => $this
-     ];
-     return view('reports.viewIncomes', $data);
+      if (Auth::guard('employee')->user()->hasRole(['root', 'supervisor'])) {
+         $data = [
+            'incomes' => Transaction::getSummary(FALSE),
+            'me' => $this
+         ];
+         return view('reports.viewIncomes', $data);
+      }
+      return redirect('/');
    }
 
    public function viewReportIncomesCustom($start, $end) {
-     $data = [
-         'incomes' => Transaction::getSummary(['start' => $start, 'end' => $end]),
-         'me' => $this
-     ];
-     return view('reports.viewIncomes', $data);
+      if (Auth::guard('employee')->user()->hasRole(['root', 'supervisor'])) {
+         $data = [
+            'incomes' => Transaction::getSummary(['start' => $start, 'end' => $end]),
+            'me' => $this
+         ];
+         return view('reports.viewIncomes', $data);
+      }
+      return redirect('/');
    }
 
 }

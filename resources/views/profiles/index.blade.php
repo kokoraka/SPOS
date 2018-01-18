@@ -38,14 +38,18 @@
               <div class="form-group col-md-3 col-sm-4 col-xs-12">
                 <label class="control-label">Foto Profil</label>
                 <div class="">
-                  <img id="preview-thumbnail" class="img-circle" src="{{url('images/profiles/default.png')}}" alt="" width="140px" height="140px" style="margin: 10px 0;" />
+                  @php ($path = 'default.png')
+                  @if (Auth::guard('employee')->user()->gambar_pegawai)
+                    @php ($path = Auth::guard('employee')->user()->gambar_pegawai)
+                  @endif
+                  <img id="preview-thumbnail" class="img-circle" src="{{url('images/profiles/' . $path)}}" alt="" width="140px" height="140px" style="margin: 10px 0;" />
                   <input name="thumbnail" type="file" title="Ubah gambar" onchange="reload_image(this, '#preview-thumbnail', '');" />
                 </div>
               </div>
               <div class="form-group col-md-4 col-sm-4 col-xs-12">
                 <label class="control-label">Nama Pegawai</label>
                 <div class="">
-                  <input name="name" type="text" class="form-control" placeholder="Nama Pegawai" value="{{old('name')}}">
+                  <input name="name" type="text" class="form-control" placeholder="Nama Pegawai" value="{{Auth::guard('employee')->user()->nama_pegawai}}">
                 </div>
 
                 <label class="control-label">Kata Sandi Pegawai</label>

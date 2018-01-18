@@ -19,7 +19,7 @@ class Employee {
      * @param  \Closure  $next
      * @return mixed
      */
-     public function handle($request, Closure $next, $guard = null) {
+     public function handle($request, Closure $next, $guard = null, $role = null) {
          if (Auth::guard('employee')->guest()) {
              if ($request->ajax() || $request->wantsJson()) {
                  return response('Unauthorized.', 401);

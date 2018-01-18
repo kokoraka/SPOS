@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Models\Employees;
 use App\Models\Authority;
 use Validator;
+use Auth;
 
 class EmployeeController extends Controller {
 
@@ -17,30 +18,39 @@ class EmployeeController extends Controller {
 
 
    public function index() {
-     $data = [
-         'employees' => $this->gets(),
-         'authority' => Authority::all(),
-         'me' => $this
-     ];
-     return view('employees.index', $data);
+      if (Auth::guard('employee')->user()->hasRole(['root'])) {
+         $data = [
+            'employees' => $this->gets(),
+            'authority' => Authority::all(),
+            'me' => $this
+         ];
+         return view('employees.index', $data);
+      }
+      return redirect('/');
    }
 
    public function view($id) {
-     $data = [
-         'employee' => $this->get($id),
-         'authority' => Authority::all(),
-         'me' => $this
-     ];
-     return view('employees.change', $data);
+      if (Auth::guard('employee')->user()->hasRole(['root'])) {
+         $data = [
+            'employee' => $this->get($id),
+            'authority' => Authority::all(),
+            'me' => $this
+         ];
+         return view('employees.change', $data);
+      }
+      return redirect('/');
    }
 
    public function confirm($id) {
-     $data = [
+    if (Auth::guard('employee')->user()->hasRole(['root'])) {
+      $data = [
          'employee' => $this->get($id),
          'authority' => Authority::all(),
          'me' => $this
-     ];
-     return view('employees.delete', $data);
+      ];
+      return view('employees.delete', $data);
+    }
+    return redirect('/');
    }
 
    public function gets() {

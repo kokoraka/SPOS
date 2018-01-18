@@ -11,10 +11,18 @@
        <!-- menu profile quick info -->
        <div class="profile clearfix">
          <div class="profile_pic">
-           <img src="{{url('images/profiles/default.png')}}" alt="User profile" class="img-circle profile_img">
+            @php ($path = 'default.png')
+            @if (Auth::guard('employee')->user()->gambar_pegawai)
+               @php ($path = Auth::guard('employee')->user()->gambar_pegawai)
+            @endif
+           <img src="{{url('images/profiles/' . $path)}}" alt="{{Auth::guard('employee')->user()->nama_pegawai}}" class="img-circle profile_img" style="width: 95%; height: 100%;">
          </div>
          <div class="profile_info">
-           <h2>John Doe</h2>
+           <h2>
+             {{Auth::guard('employee')->user()->nama_pegawai}}
+             <br />
+             <small style="color: white; font-weight: bold;">({{Auth::guard('employee')->user()->kode_otoritas}})</small>
+            </h2>
          </div>
        </div>
        <!-- /menu profile quick info -->
@@ -27,20 +35,30 @@
            <h3>Menu Utama</h3>
            <ul class="nav side-menu">
              <li><a href="{{url('')}}"><i class="fa fa-home"></i> Beranda</a></li>
+               @if (Auth::guard('employee')->user()->hasRole(['root', 'keeper']))
              <li><a href="{{url('items')}}"><i class="fa fa-edit"></i> Barang</a></li>
+               @endif
+               @if (Auth::guard('employee')->user()->hasRole(['root']))
              <li><a href="{{url('employees')}}"><i class="fa fa-users"></i> Pegawai</a></li>
+               @endif
+               @if (Auth::guard('employee')->user()->hasRole(['root', 'cashier']))
              <li><a><i class="fa fa-table"></i> Transaksi <span class="fa fa-chevron-down"></span></a>
                <ul class="nav child_menu">
                  <li><a href="{{url('transaction')}}">Penjualan Barang</a></li>
                  <li><a href="{{url('transaction/history')}}">Catatan Transaksi</a></li>
                </ul>
              </li>
+               @endif
+               @if (Auth::guard('employee')->user()->hasRole(['root', 'supervisor', 'cashier']))
              <li><a><i class="fa fa-bar-chart-o"></i> Laporan <span class="fa fa-chevron-down"></span></a>
-               <ul class="nav child_menu">
+               <ul class="nav child_menu">                  
                  <li><a href="{{url('report/items')}}">Laporan Barang</a></li>
+                 @if (Auth::guard('employee')->user()->hasRole(['root', 'supervisor']))
                  <li><a href="{{url('report/incomes')}}">Laporan Pendapatan</a></li>
+                 @endif
                </ul>
              </li>
+               @endif
            </ul>
          </div>
          <div class="menu_section">
@@ -82,7 +100,7 @@
          <ul class="nav navbar-nav navbar-right">
            <li class="">
              <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-               <img src="{{url('images/profiles/default.png')}}" alt="">John Doe
+               <img src="{{url('images/profiles/' . $path)}}" alt="">{{Auth::guard('employee')->user()->nama_pegawai}}
                <span class=" fa fa-angle-down"></span>
              </a>
              <ul class="dropdown-menu dropdown-usermenu pull-right">

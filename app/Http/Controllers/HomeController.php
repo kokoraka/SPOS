@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Employees;
 use App\Models\Transaction;
 use App\Models\Items;
+use Auth;
 
 class HomeController extends Controller {
 

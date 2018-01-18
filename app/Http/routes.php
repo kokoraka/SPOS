@@ -25,7 +25,6 @@ Route::get('/logout', 'Auth\EmployeeAuthController@logout');
 Route::group(['middleware' => 'employee'], function() {
 
 
-
   /* HOME */
   Route::get('/', 'HomeController@index');
   /* HOME */

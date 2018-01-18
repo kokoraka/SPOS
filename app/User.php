@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Auth;
 
 class User extends Authenticatable {
 
@@ -20,5 +21,14 @@ class User extends Authenticatable {
 
     public function getAuthPassword() {
       return $this->kata_sandi_pegawai;
+    }
+
+    public function hasRole($roles = NULL) {
+      if ($roles) {
+          if (User::where('kode_pegawai', Auth::guard('employee')->user()->kode_pegawai)->whereIn('kode_otoritas', $roles)->get()->count() > 0) {
+            return TRUE;
+          }
+      }
+      return FALSE;
     }
 }

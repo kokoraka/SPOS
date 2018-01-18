@@ -17,7 +17,7 @@ class ProfileController extends Controller {
 
    public function index() {
      $data = [
-         'me' => $this
+         'me' => $this,
      ];
      return view('profiles.index', $data);
    }

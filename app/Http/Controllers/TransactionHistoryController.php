@@ -9,6 +9,7 @@ use App\Models\Items;
 use App\Models\Transaction;
 use App\Models\TransactionDetails;
 use Validator;
+use Auth;
 
 class TransactionHistoryController extends Controller {
 
@@ -18,30 +19,39 @@ class TransactionHistoryController extends Controller {
 
 
    public function index() {
-     $data = [
-         'transactions' => $this->gets(),
-         'me' => $this
-     ];
-     return view('transactionhistory.index', $data);
+      if (Auth::guard('employee')->user()->hasRole(['root', 'cashier'])) {
+         $data = [
+            'transactions' => $this->gets(),
+            'me' => $this
+         ];
+         return view('transactionhistory.index', $data);
+      }
+      return redirect('/');
    }
 
    public function view($id) {
-     $data = [
-         'transaction' => $this->get($id),
-         'details' => TransactionDetailsController::get_trx($id),
-         'items' => Items::all(),
-         'me' => $this
-     ];
-     return view('transactionhistory.change', $data);
+      if (Auth::guard('employee')->user()->hasRole(['root', 'cashier'])) {
+         $data = [
+            'transaction' => $this->get($id),
+            'details' => TransactionDetailsController::get_trx($id),
+            'items' => Items::all(),
+            'me' => $this
+         ];
+         return view('transactionhistory.change', $data);
+      }
+      return redirect('/');
    }
 
    public function confirm($id) {
-     $data = [
-         'transaction' => $this->get($id),
-         'details' => TransactionDetailsController::get_trx($id),
-         'me' => $this
-     ];
-     return view('transactionhistory.delete', $data);
+      if (Auth::guard('employee')->user()->hasRole(['root', 'cashier'])) {
+         $data = [
+            'transaction' => $this->get($id),
+            'details' => TransactionDetailsController::get_trx($id),
+            'me' => $this
+         ];
+         return view('transactionhistory.delete', $data);
+      }
+      return redirect('/');
    }
 
    public function gets() {

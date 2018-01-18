@@ -27,6 +27,8 @@
 
     <link href="{{url('assets/select2/css/select2.css')}}" rel="stylesheet">
     <link href="{{url('assets/build/css/custom.css')}}" rel="stylesheet">
+    <link href="{{url('favicon.png')}}" rel="icon" type="image/x-icon">
+
   </head>
   <body class="nav-md">
     <div class="container body">

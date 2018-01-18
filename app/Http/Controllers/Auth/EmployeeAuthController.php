@@ -31,7 +31,7 @@ class EmployeeAuthController extends Controller {
 
     $validator = Validator::make($request->all(), [
       'kode_pegawai' => 'required|min:4',
-      'password' => 'required|min:6'
+      'password' => 'required'
     ]);
     $messages = $validator->errors();
 
