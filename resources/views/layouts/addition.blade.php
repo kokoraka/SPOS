@@ -49,13 +49,11 @@
                </ul>
              </li>
                @endif
-               @if (Auth::guard('employee')->user()->hasRole(['root', 'supervisor', 'cashier']))
+               @if (Auth::guard('employee')->user()->hasRole(['root', 'supervisor']))
              <li><a><i class="fa fa-bar-chart-o"></i> Laporan <span class="fa fa-chevron-down"></span></a>
-               <ul class="nav child_menu">                  
+               <ul class="nav child_menu">
                  <li><a href="{{url('report/items')}}">Laporan Barang</a></li>
-                 @if (Auth::guard('employee')->user()->hasRole(['root', 'supervisor']))
                  <li><a href="{{url('report/incomes')}}">Laporan Pendapatan</a></li>
-                 @endif
                </ul>
              </li>
                @endif

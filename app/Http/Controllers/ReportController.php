@@ -18,7 +18,7 @@ class ReportController extends Controller {
     }
 
    public function items() {
-      if (Auth::guard('employee')->user()->hasRole(['root', 'cashier', 'supervisor'])) {
+      if (Auth::guard('employee')->user()->hasRole(['root', 'supervisor'])) {
          $data = [
             'items' => Items::all(),
             'me' => $this
@@ -29,7 +29,7 @@ class ReportController extends Controller {
    }
 
    public function viewReportItems() {
-      if (Auth::guard('employee')->user()->hasRole(['root', 'cashier', 'supervisor'])) {
+      if (Auth::guard('employee')->user()->hasRole(['root', 'supervisor'])) {
          $data = [
             'items' => Items::all(),
             'me' => $this
