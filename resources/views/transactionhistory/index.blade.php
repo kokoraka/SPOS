@@ -47,6 +47,7 @@
                   <td>{{$me->rp($value->total_biaya_transaksi)}}</td>
                   <td>{{$value->nama_pembeli}} @if ($value->nomor_telepon) ({{$value->nomor_telepon}}) @endif</td>
                   <td>
+                    <a href="{{url('transaction/history/receipt/' . $value->kode_transaksi)}}" class="btn btn-warning btn-xs"><i class="fa fa-print"></i> Cetak </a>
                     <a href="{{url('transaction/history/view/' . $value->kode_transaksi)}}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Lihat </a>
                     <a href="{{url('transaction/history/delete/' . $value->kode_transaksi)}}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Hapus </a>
                   </td>

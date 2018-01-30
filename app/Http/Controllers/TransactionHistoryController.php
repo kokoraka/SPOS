@@ -42,6 +42,19 @@ class TransactionHistoryController extends Controller {
       return redirect('/');
    }
 
+   public function receipt($id) {
+      if (Auth::guard('employee')->user()->hasRole(['root', 'cashier'])) {
+         $data = [
+            'transaction' => $this->get($id),
+            'details' => TransactionDetailsController::get_trx($id),
+            'items' => Items::all(),
+            'me' => $this
+         ];
+         return view('transactionhistory.receipt', $data);
+      }
+      return redirect('/');
+   }
+
    public function confirm($id) {
       if (Auth::guard('employee')->user()->hasRole(['root', 'cashier'])) {
          $data = [

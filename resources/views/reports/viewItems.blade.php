@@ -24,6 +24,7 @@
               </tr>
             </thead>
             <tbody>
+              @php ($totals = 0)
               @foreach ($items as $key => $value)
               <tr>
                 <td>{{$value->kode_barang}}</td>
@@ -31,10 +32,19 @@
                 <td>{{$me->rp($value->harga_barang)}}</td>
                 <td>{{$value->stok_barang}}</td>
               </tr>
+              @php ($totals += $value->stok_barang)
               @endforeach
             </tbody>
           </table>
         </div>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 10px;">
+      <div class="col-md-12">
+        <p class="text-left" style="font-size: 14pt; font-weight: bold;">
+          Total Stok: {{$totals}} Barang
+        </p>
       </div>
     </div>
 

@@ -24,7 +24,6 @@ Route::get('/logout', 'Auth\EmployeeAuthController@logout');
 
 Route::group(['middleware' => 'employee'], function() {
 
-
   /* HOME */
   Route::get('/', 'HomeController@index');
   /* HOME */
@@ -76,6 +75,8 @@ Route::group(['middleware' => 'employee'], function() {
   Route::post('/transaction/history/change/{id}', 'TransactionHistoryController@change');
   Route::post('/transaction/history/delete/{id}', 'TransactionHistoryController@delete');
   Route::post('/transaction/history/add', 'TransactionHistoryController@store');
+
+  Route::get('/transaction/history/receipt/{id}', 'TransactionHistoryController@receipt');
 
   Route::get('/transaction/history/change', function() {
     return redirect('/transaction/history');

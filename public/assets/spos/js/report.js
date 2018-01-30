@@ -1,4 +1,37 @@
-
+function receipt(method) {
+  /* DEFINING REPORT */
+  var report = new jsPDF({
+    orientation: 'l',
+    format: 'a5'
+  });
+  report.setProperties({
+      title: 'Nota Transaksi SPOS',
+      subject: 'Nota Transaksi SPOS',
+      author: 'Raka Suryaardi Widjaja',
+      keywords: 'simple, point, of, sales, report',
+      creator: 'toor'
+  });
+  report.setFont('courier', 'normal');
+  report.setFontSize(10);
+  var settings = {
+    name : 'nota-transaksi.pdf',
+    background: '#ffffff',
+    pagesplit: true,
+    margins : {
+      top: 10,
+      bottom: 10,
+      left: 10,
+      width: 170
+    }
+  };
+  /* DEFINING REPORT */
+  if (method == 'print') {
+    report.autoPrint();
+  }
+  report.addHTML($("#receipt-transaction"), settings, function() {
+    report.save(settings.name);
+  });
+}
 function reports(type, method) {
   /* DEFINING REPORT */
   var report = new jsPDF('landscape');
@@ -91,4 +124,7 @@ $(document).ready(function() {
     });
   }
 
+  $('#receipt-print').on('click', function() {
+    receipt('print');
+  });
 });
